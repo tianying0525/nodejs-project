@@ -17,13 +17,52 @@ var problems = [{
         difficulty: "hard"
     }];
 
+var ProblemModel = require('../models/problemModel');
 
 var getProblems = function(){
     return new Promise((resolve,reject)=>{
-        resolve(problems);
+        ProblemModel.find({},function (err,problems) {
+            if(err){
+                reject(err);
+            }else{
+                resolve(problems);
+            }
+        })
+    });
+};
+
+var getProblem = function(id){
+    return new Promise((resolve,reject)=>{
+        ProblemModel.findOne({id:id},function (err,problems) {
+            if(err){
+                reject(err);
+            }else{
+                resolve(problems);
+            }
+    });
+
+    });
+};
+
+var addProblem = function(newProblem){
+    return new Promise((resolve,reject)=> {
+        ProblemModel.findOne({name:newProblem.name},function (err,problem) {
+            if(problem){
+                reject("Problem name already exist!");
+            }else{
+                ProblemModel.count({},function (err,num) {
+                    newProblem.id = num+1;
+                    var mangoProblem = new ProblemModel(newProblem);
+                    mangoProblem.save();
+                    resolve(newProblem);
+                });
+            }
+        });
     });
 };
 
 module.exports = {
-    getProblems:getProblems
+    getProblems:getProblems,
+    getProblem:getProblem,
+    addProblem:addProblem,
 }
