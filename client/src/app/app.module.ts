@@ -11,8 +11,10 @@ import { ProblemDetailComponent } from './components/problem-detail/problem-deta
 import { DataService } from "./services/data.service";
 import { NewProblemComponent } from './components/new-problem/new-problem.component';
 
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [{
