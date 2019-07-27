@@ -1,10 +1,9 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
+var restRouter = require('./routes/rest');
 
-app.get('/',function(req,res){
-    res.send('Hello Express Word! again again')
-})
+app.use('/api.v1',restRouter);
 
 app.listen(3000,function () {
     console.log('App listening on port 3000!')
-})
+});
