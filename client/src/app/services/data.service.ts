@@ -4,11 +4,13 @@ import {PROBLEMS} from '../mock.problems';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
+// import 'rxjs/add/operator/toPromise';
 
-// @Injectable({
-//   providedIn: 'root'
-// })
-@Injectable()
+
+@Injectable({
+  providedIn: 'root'
+})
+// @Injectable()
 
 export class DataService {
 
@@ -19,8 +21,8 @@ export class DataService {
   getProblems(): Observable<Problem[]> {
     this.http.get('api/v1/problems')
       .toPromise()
-      .then((res: Response) => {
-        this.problemsSource.next(res.json());
+      .then(res => {
+        this.problemsSource.next(res);
       })
       .catch(this.handleError);
 
@@ -30,7 +32,7 @@ export class DataService {
   getProblem(id: number): Promise<Problem> {
     return this.http.get('api/v1/problems/${id}')
       .toPromise()
-      .then((res: Response) => res.json())
+      // .then(res => res)
       .catch(this.handleError);
   }
 
@@ -46,9 +48,9 @@ export class DataService {
     };
     return this.http.post('api/v1/problems', problem, httpOptions)
       .toPromise()
-      .then((res: Response) => {
+      .then(res => {
         this.getProblems();
-        return res.json();
+        return res;
       })
       .catch(this.handleError);
 
@@ -63,3 +65,4 @@ export class DataService {
     return Promise.reject(error.body || error);
   }
 }
+
