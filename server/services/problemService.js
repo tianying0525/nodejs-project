@@ -33,11 +33,11 @@ var getProblems = function(){
 
 var getProblem = function(id){
     return new Promise((resolve,reject)=>{
-        ProblemModel.findOne({id:id},function (err,problems) {
+        ProblemModel.findOne({id:id},function (err,problem) {
             if(err){
                 reject(err);
             }else{
-                resolve(problems);
+                resolve(problem);
             }
     });
 

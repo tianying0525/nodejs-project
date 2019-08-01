@@ -16,3 +16,9 @@ app.use('/',indexRouter);
 app.listen(3000,function () {
     console.log('App listening on port 3000!')
 });
+
+app.use(function(req, res)  {
+    //send index.html to start client side
+    res.sendFile("index.html", { root: path.join(__dirname, '../public/') })
+
+});

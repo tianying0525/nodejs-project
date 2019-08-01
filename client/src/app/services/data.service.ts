@@ -21,7 +21,7 @@ export class DataService {
   getProblems(): Observable<Problem[]> {
     this.http.get('api/v1/problems')
       .toPromise()
-      .then(res => {
+      .then((res: Problem[]) => {
         this.problemsSource.next(res);
       })
       .catch(this.handleError);
@@ -32,7 +32,7 @@ export class DataService {
   getProblem(id: number): Promise<Problem> {
     return this.http.get('api/v1/problems/${id}')
       .toPromise()
-      // .then(res => res)
+      .then((res: Problem) => res)
       .catch(this.handleError);
   }
 
@@ -48,7 +48,7 @@ export class DataService {
     };
     return this.http.post('api/v1/problems', problem, httpOptions)
       .toPromise()
-      .then(res => {
+      .then((res: Problem) => {
         this.getProblems();
         return res;
       })
