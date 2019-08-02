@@ -8,11 +8,14 @@ import { AppComponent } from './app.component';
 import { ProblemListComponent } from './components/problem-list/problem-list.component';
 import { ProblemDetailComponent } from './components/problem-detail/problem-detail.component';
 
-import { DataService } from "./services/data.service";
+import { DataService } from './services/data.service';
 import { NewProblemComponent } from './components/new-problem/new-problem.component';
 
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -26,11 +29,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    HttpClientModule
 
   ],
   providers: [{
-  provide: "data",
+  provide: 'data',
   useClass: DataService
   }],
   bootstrap: [AppComponent]

@@ -4,6 +4,10 @@
 /dist
 /tmp
 /out-tsc
+
+/public
+
+client/dist/
 # Only exists if Bazel was run
 /bazel-out
 
