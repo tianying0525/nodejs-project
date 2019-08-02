@@ -25,18 +25,24 @@ var getProblems = function(){
             if(err){
                 reject(err);
             }else{
+                // console.log("get all");
                 resolve(problems);
             }
         })
     });
 };
 
-var getProblem = function(id){
+var getProblem = function(request_id){
     return new Promise((resolve,reject)=>{
-        ProblemModel.findOne({id:id},function (err,problem) {
+        ProblemModel.findOne({id:request_id},function (err,problem) {
             if(err){
                 reject(err);
-            }else{
+            }
+            if(!problem){
+                console.log("data error:"+request_id);
+            }
+            else{
+                // console.log("data no error:"+request_id);
                 resolve(problem);
             }
     });

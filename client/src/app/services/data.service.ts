@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Problem} from '../models/problem.model';
 import {PROBLEMS} from '../mock.problems';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 // import 'rxjs/add/operator/toPromise';
 
@@ -30,11 +30,17 @@ export class DataService {
   }
 
   getProblem(id: number): Promise<Problem> {
-    return this.http.get('api/v1/problems/${id}')
+    return this.http.get('api/v1/problems' + '/' + id)
       .toPromise()
-      .then((res: Problem) => res)
+      // .then((res: Problem) => res)
       .catch(this.handleError);
   }
+
+  // getProblem(id: number): Promise<Problem> {
+  //   return this.http.get('api/v1/problems',{ params: id})
+  //     .toPromise()
+  //     .catch(this.handleError);
+  // }
 
 
   addProblem(problem: Problem): Promise<Problem> {
