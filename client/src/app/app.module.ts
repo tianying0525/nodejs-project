@@ -9,6 +9,8 @@ import { ProblemListComponent } from './components/problem-list/problem-list.com
 import { ProblemDetailComponent } from './components/problem-detail/problem-detail.component';
 
 import { DataService } from './services/data.service';
+import { AuthService } from './services/auth.service';
+
 import { NewProblemComponent } from './components/new-problem/new-problem.component';
 
 import { FormsModule } from '@angular/forms';
@@ -37,7 +39,10 @@ import { HttpModule } from '@angular/http';
   providers: [{
   provide: 'data',
   useClass: DataService
-  }],
+  }, {
+    provide: 'auth',
+  useClass: AuthService
+}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
